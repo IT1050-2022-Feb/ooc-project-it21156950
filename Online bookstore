@@ -1,0 +1,293 @@
+#include <iostream>
+#include<cstring>
+#include<string>
+using namespace std;
+
+class Book;
+class Customer;
+class Order;
+class Cart;
+class DeliverStaff;
+class Payment;
+class BankCard;
+class PayPal;
+class Report;
+class Feedback;
+class FinancialStaff;
+
+class Book {
+	private:
+		string bookId;
+		string booktitle;
+		double bookPrice;
+		string bookType;
+		string bookAuthor;
+	public:
+		Book();
+		Book(string bookid, double price, string book_type, string book_author);
+		void addBooks();
+		void modifyBooks();
+		void removeBooks();
+};
+
+class Customer{
+	private:
+		string customerId;
+		string cName;
+		string cAddress;
+		string contactNo;
+		Order  *order[10]; //Bi-directional Association 
+	public:
+		Customer();
+		Customer(string cId, string name, string address,string contactno);
+		void CustomerRegister();
+		void login();
+		void editProfile();
+		void addFeedback();
+};
+
+class Order{
+	private:
+		string orderId;
+		double amount;
+		string orderedDate;
+		Customer *customer; //Bi-directional Association 
+		Book *Obook; //Uni-directional Association 
+	public:
+		Order();
+		Order(string orderId,double amount, string ordereddate);
+		void addOrderDetails(string orderId,double amount, string ordereddate,Book *book);
+		void calTotAmount();
+		void displayOrderDetails();	
+};
+
+class Cart {
+private:
+	string cartId;
+	Order *order[10];
+public:
+	Cart();
+	Cart(string cardId);
+	void displayCart();
+	void addToCart(Order *getOrder);
+	void removeFromCart();
+};
+
+class DeliveryStaff {
+private:
+	string deliveryNo;
+	string deliveryPeriod;
+	string deliveryType;
+	Order *confirmOrder[10];//orders which paid and confirmed 
+
+public:
+  DeliveryStaff();
+  DeliveryStaff(string delivery_no,string delivery_period,string delivery_type);
+	void addDeliveryDetails(Order *cOrder);
+	void displayDeliveryDetails();
+};
+
+class Payment {
+protected:
+	string paymentId;
+	double amount;
+	double offers;
+	double totalamount;
+public:
+  Payment();
+  Payment(string payment_id,double Amount,double Offers,double total_amount);
+	void paymentDetails();
+	void payValidate();
+};
+
+class BankCard: public Payment {
+private:
+	int cardNo;
+	string expDate;
+	int cvv;
+public:
+  BankCard();
+  BankCard(int card_no,string exp_date,int Cvv);
+};
+
+class PayPal :public Payment {
+private:
+	string paypalId;
+	string paypalPassword;
+public:
+  PayPal();
+  PayPal(string paypal_id,string paypalPassword);
+};
+
+
+class FinancialStaff {
+private:  
+	string reportMonth;
+  double totalIncome;
+  double totalCost;
+	Report* report[8];
+	Payment* payment[7];
+public:
+  FinancialStaff();
+  FinancialStaff(string month, double income, double cost);
+	double calProfit(Payment *pay1,Payment *pay2);
+	void displayProfit();
+};
+
+class Report {
+private:
+	string reportId;
+public:
+  Report();
+  Report(string report_id);
+	double calmonthlySale();
+	void dsiplayfinancialReport();
+};
+
+class Feedback {
+private:
+	int feedbackNo;
+	string feedback;
+	Customer* customer[20];
+public:
+  Feedback();
+  Feedback(int feedback_no,string feedBack);
+	void displayFeedback(Customer *customer1,Customer *customer2);
+	void inputFeedback(int feedbackno,string description);
+
+};
+
+Book::Book(){
+  bookId="";
+  bookPrice=0;
+  bookType="";
+  bookAuthor="";
+}
+
+Book::Book(string bookid, double price, string book_type, string book_author){
+  bookId=bookid;
+  bookPrice=price;
+  bookType=book_type;
+  bookAuthor=book_author;
+}
+Customer::Customer(){
+	customerId = "";
+cName = "";
+cAddress = "";
+contactNo ="";
+
+}
+
+Customer::Customer(string cId, string name, string address,string contactno) {
+	customerId = cId;
+	cName = name;
+	cAddress = address;
+	contactNo = contactno;
+}
+void Customer::login(){
+}
+Order::Order(){
+	orderId = "";
+amount = 0;
+orderedDate = "";
+}
+
+Order::Order(string orderID, double Amount, string ordered_date) {
+	orderId = orderID;
+	amount = Amount;
+	orderedDate = ordered_date;
+}
+
+Cart::Cart(){
+  cartId="";
+}
+Cart::Cart(string cart_id){
+  cartId=cart_id;
+}
+
+DeliveryStaff::DeliveryStaff(){
+  deliveryNo="";
+  deliveryPeriod="";
+  deliveryType="";
+}
+DeliveryStaff::DeliveryStaff(string delivery_no,string delivery_period,string delivery_type){
+  deliveryNo= delivery_no;
+  deliveryPeriod=delivery_period;
+  deliveryType=delivery_type;
+}
+
+Payment::Payment(){
+  paymentId="";
+  amount=0;
+  totalamount=0;
+  }
+
+Payment::Payment(string payment_id,double Amount,double Offers,double total_amount){
+  paymentId=payment_id;
+  amount=Amount;
+  offers=Offers;
+  totalamount=total_amount;
+  }
+ BankCard::BankCard(){
+  cardNo=0;
+  expDate="";
+  cvv=0;
+}
+BankCard::BankCard(int card_no,string exp_date,int Cvv){
+  cardNo= card_no;
+ expDate=exp_date;
+  cvv=Cvv;
+}
+
+PayPal::PayPal(){
+  paypalId="";
+  paypalPassword="";
+}
+
+PayPal::PayPal(string paypal_id,string paypalPassword){
+   paypalId=paypal_id;
+  paypalPassword=paypalPassword;
+}
+
+FinancialStaff::FinancialStaff(){
+  reportMonth="";
+  totalIncome=0.00;
+  totalCost=0.00;
+}
+FinancialStaff::FinancialStaff(string month, double income, double cost){
+  reportMonth=month;
+  totalIncome=income;
+  totalCost=cost;
+}  
+    
+Report::Report(){
+  reportId="";
+}
+Report::Report(string report_id){
+  reportId=report_id;
+}
+
+Feedback::Feedback(){
+  feedbackNo=0;
+  feedback="";
+}
+ Feedback::Feedback(int feedback_no,string Feedback){
+   feedbackNo=feedback_no;
+   feedback=Feedback;
+ }
+ 
+ int main()
+{
+  Customer *c1=new Customer();
+  Book *b1=new Book();
+  Order *o1=new Order();
+  Cart *cart1= new Cart();
+  FinancialStaff *f1= new FinancialStaff();
+  DeliveryStaff *d1=new DeliveryStaff() ;
+  Payment *payment1=new Payment();
+  BankCard *card1=new BankCard();
+  PayPal *pal1=new PayPal();
+  Report *report1=new  Report();
+  Feedback *feedback1=new Feedback();
+  
+}
