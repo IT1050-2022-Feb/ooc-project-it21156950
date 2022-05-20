@@ -2,8 +2,6 @@
 
 #include<iostream>
 #include<cstring>
-#include "customer.h"
-#include"FinacialStaff.h"
 #define SIZE 10;
 
 using namespace std;
@@ -21,7 +19,7 @@ class Feedback //feedback class
         Feedback();
         Feedback(int feedback_no , string feedBack);
         void displayFeedback(Customer * customer1 , Customer* customer2);
-        void inputFeedback(int feedback_no , string feedBack);
+        void inputFeedback(int feedback_no , string discription);
 };
 
 
