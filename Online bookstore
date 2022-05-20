@@ -15,6 +15,9 @@ class Report;
 class Feedback;
 class FinancialStaff;
 
+/*ID:IT21156960
+Name:C.K.Kodithuwakku
+*/
 class Book {
 	private:
 		string bookId;
@@ -46,6 +49,8 @@ class Customer{
 		void addFeedback();
 };
 
+/* ID:IT21155802
+Name:D.S.C.WIJESURIYA */
 class Order{
 	private:
 		string orderId;
@@ -72,9 +77,10 @@ public:
 	void addToCart(Order *getOrder);
 	void removeFromCart();
 };
-
+/*ID:IT21155048
+Name:GANEPOLA G.A.N.B*/
 class DeliveryStaff {
-private:
+private: 
 	string deliveryNo;
 	string deliveryPeriod;
 	string deliveryType;
@@ -86,7 +92,22 @@ public:
 	void addDeliveryDetails(Order *cOrder);
 	void displayDeliveryDetails();
 };
+class FinancialStaff {
+private:  
+	string reportMonth;
+  double totalIncome;
+  double totalCost;
+	Report* report[8];
+	Payment* payment[7];
+public:
+  FinancialStaff();
+  FinancialStaff(string month, double income, double cost);
+	double calProfit(Payment *pay1,Payment *pay2);
+	void displayProfit();
+};
 
+/*ID:IT21157646
+Name:W.U.P.SANDARUWAN*/
 class Payment {
 protected:
 	string paymentId;
@@ -119,23 +140,10 @@ public:
   PayPal(string paypal_id,string paypalPassword);
 };
 
-
-class FinancialStaff {
-private:  
-	string reportMonth;
-  double totalIncome;
-  double totalCost;
-	Report* report[8];
-	Payment* payment[7];
-public:
-  FinancialStaff();
-  FinancialStaff(string month, double income, double cost);
-	double calProfit(Payment *pay1,Payment *pay2);
-	void displayProfit();
-};
-
+/*ID:IT21184826
+Name:W.D.K.D.H. PATHIRANA*/
 class Report {
-private:
+private: 
 	string reportId;
 public:
   Report();
