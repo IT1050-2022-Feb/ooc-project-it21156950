@@ -1,0 +1,50 @@
+#include <iostream>
+#include<cstring>
+
+using namespace std;
+
+class Cart {
+private:
+	string cartId;
+	Order *order[10];
+public:
+	Cart();
+	Cart(string cardId);
+	void displayCart();
+	void addToCart(Order *getOrder);
+	void removeFromCart();
+};
+
+class Order{
+	private:
+		string orderId;
+		double amount;
+		string orderedDate;
+		Customer *customer; //Bi-directional Association 
+		Book *Obook;  //Uni-directional Association 
+	public:
+		Order();
+		Order(string orderId,double amount, string ordereddate);
+		void addOrderDetails(string orderId,double amount, string ordereddate,Book *book);
+		void calTotAmount();
+		void displayOrderDetails();	
+};
+
+Cart::Cart(){
+  cartId="";
+}
+Cart::Cart(string cart_id){
+  cartId=cart_id;
+}
+
+Order::Order(){
+	orderId = "";
+amount = 0;
+orderedDate = "";
+}
+
+Order::Order(string orderID, double Amount, string ordered_date) {
+	orderId = orderID;
+	amount = Amount;
+	orderedDate = ordered_date;
+}
