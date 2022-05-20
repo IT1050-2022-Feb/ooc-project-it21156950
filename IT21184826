@@ -1,0 +1,65 @@
+//IT21184826 W.D.K.D.H.Pathirana
+
+#include<iostream>
+#include<cstring>
+#include "customer.h"
+#include"FinacialStaff.h"
+#define SIZE 10;
+
+using namespace std;
+
+//creating classes
+
+class Feedback //feedback class
+{
+    private: //Attributes
+      int feedbackNo;
+      string feedback;
+      Customer * customer[SIZE];
+
+    public: //methods
+        Feedback();
+        Feedback(int feedback_no , string feedBack);
+        void displayFeedback(Customer * customer1 , Customer* customer2);
+        void inputFeedback(int feedback_no , string feedBack);
+};
+
+
+class Report //report class
+{
+    private: //Attributes
+      string reportId;
+
+    public:  //methods
+      Report();
+      Report(string report_id);
+      void calmonthlySales();
+      void displayFinacialReport();
+};
+
+//Implementing Methods
+
+//feedback class methods
+
+Feedback::Feedback()
+{
+  feedbackNo=0;
+  feedback="";
+}
+ Feedback::Feedback(int feedback_no,string feedBack)
+{
+   feedbackNo=feedback_no;
+   feedback=feedBack;
+ }
+
+//reports class methods
+
+
+Report::Report()
+{
+  reportId="";
+}
+Report::Report(string report_id)
+{
+  reportId=report_id;
+}
